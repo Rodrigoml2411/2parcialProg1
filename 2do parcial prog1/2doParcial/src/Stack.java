@@ -8,14 +8,14 @@ public class Stack<T> {
         size = 0;
     }
 
-    public void push(T item) {
+    public void push(T item) { //agregar un elemento a la parte superior de la pila
         Node<T> node = new Node<>(item);
         node.next = top;
         top = node;
         size++;
     }
 
-    public T pop() {
+    public T pop() { //eliminar un elemento de la parte superior de la pila
         if (top == null) return null;
         T data = top.data;
         top = top.next;
@@ -23,7 +23,7 @@ public class Stack<T> {
         return data;
     }
 
-    public T peek() {
+    public T peek() { //obtener el elemento en la parte superior de la pila sin eliminarlo
         return top == null ? null : top.data;
     }
 

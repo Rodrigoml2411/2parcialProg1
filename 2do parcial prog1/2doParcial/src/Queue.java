@@ -10,7 +10,7 @@ public class Queue<T> {
         size = 0;
     }
 
-    public void enqueue(T item) {
+    public void enqueue(T item) { //agregar un elemento al final de la cola
         Node<T> node = new Node<>(item);
         if (tail == null) {
             head = tail = node;
@@ -21,7 +21,7 @@ public class Queue<T> {
         size++;
     }
 
-    public T dequeue() {
+    public T dequeue() { //eliminar un elemento del frente de la cola
         if (head == null) return null;
         T data = head.data;
         head = head.next;
@@ -30,7 +30,7 @@ public class Queue<T> {
         return data;
     }
 
-    public T peek() {
+    public T peek() { //obtener el elemento del frente de la cola sin eliminarlo
         return head == null ? null : head.data;
     }
 
