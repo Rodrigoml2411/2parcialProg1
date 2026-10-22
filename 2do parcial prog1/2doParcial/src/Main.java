@@ -24,6 +24,9 @@ public class Main {
         System.out.println("b1 prestado a usuarioA? " + prestado + " -> disponible? " + b1.isAvailable());
         prestado = b1.lend("usuarioB");
         System.out.println("b1 prestado a usuarioB? " + prestado + " -> disponible? " + b1.isAvailable());
+        b1.addToWaitlist("usuarioB");
+        b1.addToWaitlist("usuarioD");
+        System.out.println("Primero en espera para b1: " + b1.nextWaitingUser());
 
         prestado = b2.lend("usuarioC");
         System.out.println("b2 prestado a usuarioC? " + prestado);
@@ -36,11 +39,12 @@ public class Main {
         LoanRecord undone = b2.undoLastLoan();
         System.out.println("Deshecho: " + undone + " -> disponible? " + b2.isAvailable());
 
-        // Devuelve el libro b1: debería asignarse a usuarioB de la lista de espera 
+        // Devuelve el libro b1: se asigna al primer usuario de la lista de espera.
         System.out.println("\n--- Devolución b1 ---");
         String assigned = b1.returnBook();
         System.out.println("Al devolver b1 se asignó a: " + (assigned == null ? "nadie (queda disponible)" : assigned));
         System.out.println("b1 disponible? " + b1.isAvailable() + ", historial size: " + b1.loanHistorySize());
+        System.out.println("Siguiente usuario en espera: " + b1.nextWaitingUser());
 
         // Busca por el título parcial
         System.out.println("\n---  Búsqueda por título 'Program' ---");
@@ -81,5 +85,3 @@ public class Main {
          System.out.println("\n Demostración completada.");
     }
 }
-
-//Tarea 3 no se hace

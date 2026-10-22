@@ -7,7 +7,7 @@ public class Book {
     private boolean available;
     private int timesLoaned;
 
-    // Solo historial, porque la lista de espera fue eliminada
+    private Queue<String> waitlist;
     private Stack<LoanRecord> loanHistory;
 
     public Book(String title, String isbn, String author, int publicationYear) {
@@ -17,6 +17,7 @@ public class Book {
         this.publicationYear = publicationYear;
         this.available = true;
         this.timesLoaned = 0;
+        this.waitlist = new Queue<>();
         this.loanHistory = new Stack<>();
     }
 
@@ -25,6 +26,10 @@ public class Book {
         if (user == null) return false;
 
         if (available) {
+            if (!waitlist.isEmpty()) {
+                if (!user.equals(waitlist.peek())) return false;
+                waitlist.dequeue();
+            }
             available = false;
             timesLoaned++;
             loanHistory.push(new LoanRecord(user, now()));
@@ -32,6 +37,18 @@ public class Book {
         }
 
         return false;
+    }
+
+    // Agrega un usuario a la espera si el libro está prestado.
+    public boolean addToWaitlist(String user) {
+        if (user == null || available) return false;
+        waitlist.enqueue(user);
+        return true;
+    }
+
+    // Consulta el primer usuario en espera sin quitarlo de la cola.
+    public String nextWaitingUser() {
+        return waitlist.peek();
     }
 
     // Ve el último préstamo sin modificar
@@ -49,10 +66,12 @@ public class Book {
         return last;
     }
 
-    // Devuelve el libro: ahora simplemente lo marca como disponible (sin lista de espera)
+    // Devuelve el libro y lo presta al primer usuario en espera, si existe.
     public String returnBook() {
         available = true;
-        return null; 
+        String nextUser = waitlist.peek();
+        if (nextUser != null && lend(nextUser)) return nextUser;
+        return null;
     }
 
 
