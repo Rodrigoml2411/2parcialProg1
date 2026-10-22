@@ -4,7 +4,7 @@ public class Main {
         // Crea la biblioteca
         Library lib = new Library("Biblioteca Central");
 
-        // Crea los libros
+        
         Book b1 = new Book("Programación en Java", "978-1111", "Juan Pérez", 2018);
         Book b2 = new Book("Estructuras de Datos", "978-2222", "María López", 2015);
         Book b3 = new Book("Algoritmos y Programación", "978-3333", "Carlos Ruiz", 2020);
@@ -43,7 +43,7 @@ public class Main {
         System.out.println("b1 disponible? " + b1.isAvailable() + ", historial size: " + b1.loanHistorySize());
 
         // Busca por el título parcial
-        System.out.println("\n--- 🔍 Búsqueda por título 'Program' ---");
+        System.out.println("\n---  Búsqueda por título 'Program' ---");
         LinkedList<Book> found = lib.findBooksByTitle("Program");
         for (int i = 0; i < found.size(); i++) {
             System.out.println("Encontrado: " + found.get(i));
@@ -76,11 +76,8 @@ public class Main {
         System.out.println("Después de clear, isEmpty? " + lista.isEmpty());
 
         // Muestra las estadísticas finales
-        System.out.println("\n📊 Estadísticas finales: " + lib.getStatistics());
+        System.out.println("\n Estadísticas finales: " + lib.getStatistics());
 
-         System.out.println("\n🎉 Demostración completada.");
+         System.out.println("\n Demostración completada.");
     }
 }
-
-
-//Tarea 3 no se hace

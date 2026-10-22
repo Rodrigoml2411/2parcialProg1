@@ -31,7 +31,7 @@ public class Book {
             return true;
         }
 
-        return false; // YA NO agrega a lista de espera
+        return false;
     }
 
     // Ve el último préstamo sin modificar
@@ -52,7 +52,7 @@ public class Book {
     // Devuelve el libro: ahora simplemente lo marca como disponible (sin lista de espera)
     public String returnBook() {
         available = true;
-        return null; // YA NO prestará automáticamente a nadie
+        return null; 
     }
 
 
